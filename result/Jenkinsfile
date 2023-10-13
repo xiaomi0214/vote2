@@ -3,9 +3,9 @@ pipeline {
     stages {
 
         stage('Scan Code with Sonarqube') {
-            when {
-                changeset "**/result/**"
-            }
+            // when {
+            //     changeset "**/result/**"
+            // }
             agent {
                 kubernetes {
                     defaultContainer 'sonar-scanner'
@@ -47,9 +47,9 @@ spec:
         }
 
         stage('Build with Kaniko') {
-            when {
-                changeset "**/result/*.*"
-            }
+            // when {
+            //     changeset "**/result/*.*"
+            // }
             agent {
                 kubernetes {
                     defaultContainer 'kaniko'
@@ -82,7 +82,8 @@ spec:
             }
 
             environment {
-                HARBOR_URL     = credentials('harbor-url')
+                //HARBOR_URL     = credentials('harbor-url')
+                HARBOR_URL     ="harbor.lx.gkdevopscamp.uk"
                 IMAGE_PUSH_DESTINATION="${HARBOR_URL}/vote/result"
                 GIT_COMMIT="${checkout (scm).GIT_COMMIT}"
                 IMAGE_TAG = "${BRANCH_NAME}-${GIT_COMMIT}"
