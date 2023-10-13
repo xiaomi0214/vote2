@@ -102,7 +102,7 @@ namespace Worker
                 }
                 catch (DbException)
                 {
-                    Console.Error.WriteLine("Waiting for db");
+                    Console.Error.WriteLine("Waiting  for db");
                     Thread.Sleep(1000);
                 }
             }
