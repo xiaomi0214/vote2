@@ -1,6 +1,6 @@
 #!/bin/sh
 
-while ! timeout 1 bash -c "echo  > /dev/tcp/vote/80"; do
+while ! timeout 1 bash -c "echo   > /dev/tcp/vote/80"; do
     sleep 1
 done
 
