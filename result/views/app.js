@@ -48,3 +48,4 @@ function getPercentages(a, b) {
 
   return result;
 }
+//test
