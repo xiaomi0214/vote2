@@ -5,10 +5,10 @@ multibranchPipelineJob("${Name}") {
             source {
                 github {
                     id('github')
-                    repoOwner("devops-advanced-camp")
+                    repoOwner("xiaomi0214")
                     configuredByUrl(false)
-                    repository("vote")
-                    repositoryUrl("https://github.com/devops-advanced-camp/vote.git")
+                    repository("vote2")
+                    repositoryUrl("https://github.com/xiaomi0214/vote2.git")
                     credentialsId('github-pull-secret')
 
                     traits {
