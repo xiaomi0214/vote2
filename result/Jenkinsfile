@@ -47,9 +47,9 @@ pipeline {
 //         }
 
         stage('Build with Kaniko') {
-            // when {
-            //     changeset "**/result/*.*"
-            // }
+            when {
+                changeset "**/result/*.*"
+            }
             agent {
                 kubernetes {
                     defaultContainer 'kaniko'
