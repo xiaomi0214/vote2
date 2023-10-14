@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build result') {
             when {
-                changeset "**/result/*.*"
+                changeset "**/result/**"
             }
             agent {
                 kubernetes {
@@ -50,7 +50,7 @@ spec:
                     withEnv(['PATH+EXTRA=/busybox']) {
                         sh '''#!/busybox/sh
                             cd result
-                            /kaniko/executor --context `pwd` --destination $IMAGE_PUSH_DESTINATION --insecure
+                            /kaniko/executor --context `pwd` --destination $BUILD_IMAGE --insecure
                         '''
                     }
                 }
@@ -59,7 +59,7 @@ spec:
 
         stage('Build vote') {
             when {
-                changeset "**/vote/*.*"
+                changeset "**/vote/**"
             }
             agent {
                 kubernetes {
@@ -106,7 +106,7 @@ spec:
                     withEnv(['PATH+EXTRA=/busybox']) {
                         sh '''#!/busybox/sh
                             cd vote
-                            /kaniko/executor --context `pwd` --destination $IMAGE_PUSH_DESTINATION --insecure
+                            /kaniko/executor --context `pwd` --destination $BUILD_IMAGE --insecure
                         '''
                     }
                 }
@@ -115,7 +115,7 @@ spec:
 
         stage('Build worker') {
             when {
-                changeset "**/worker/*.*"
+                changeset "**/worker/**"
             }
             agent {
                 kubernetes {
@@ -162,7 +162,7 @@ spec:
                     withEnv(['PATH+EXTRA=/busybox']) {
                         sh '''#!/busybox/sh
                             cd worker
-                            /kaniko/executor --context `pwd` --destination $IMAGE_PUSH_DESTINATION --insecure --build-arg "TARGETPLATFORM='linux/amd64'" --build-arg "BUILDPLATFORM='linux/amd64'"
+                            /kaniko/executor --context `pwd` --destination $BUILD_IMAGE --insecure --build-arg "TARGETPLATFORM='linux/amd64'" --build-arg "BUILDPLATFORM='linux/amd64'"
                         '''
                     }
                 }
