@@ -53,7 +53,7 @@ spec:
                     withEnv(['PATH+EXTRA=/busybox']) {
                         sh '''#!/busybox/sh
                             cd vote
-                            /kaniko/executor --context `pwd` --destination $IMAGE_PUSH_DESTINATION --insecure
+                            /kaniko/executor --context `pwd` --destination $BUILD_IMAGE --insecure
                         '''
                     }
                 }
