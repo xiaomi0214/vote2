@@ -2,10 +2,10 @@ pipeline {
     agent none
     stages {
 
-//         stage('Scan Code with Sonarqube') {
-            when {
-                changeset "**/result/**"
-            }
+        // stage('Scan Code with Sonarqube') {
+        //     when {
+        //         changeset "**/result/**"
+        //     }
 //             agent {
 //                 kubernetes {
 //                     defaultContainer 'sonar-scanner'
@@ -47,9 +47,9 @@ pipeline {
 //         }
 
         stage('Build with Kaniko') {
-            // when {
-            //     changeset "**/result/*.*"
-            // }
+            when {
+                changeset "**/result/*.*"
+            }
             agent {
                 kubernetes {
                     defaultContainer 'kaniko'
