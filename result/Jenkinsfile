@@ -48,7 +48,7 @@ pipeline {
 
         stage('Build with Kaniko') {
             when {
-                changeset "**/result/*.*"
+                changeset "**/result/**"
             }
             agent {
                 kubernetes {

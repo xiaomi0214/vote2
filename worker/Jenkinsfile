@@ -4,7 +4,7 @@ pipeline {
         stage('Build with Kaniko') {
             // 这段 Demo4 才需要，Demo1 不演示，突出 Git 提交全部都会触发的特性
             when {
-                changeset "**/worker/*.*"
+                changeset "**/worker/**"
             }
             // 这段 Demo4 才需要
             agent {
