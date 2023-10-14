@@ -82,8 +82,8 @@ spec:
             }
 
             environment {
-                //HARBOR_URL     = credentials('harbor-url')
-                HARBOR_URL     ="harbor.lx.gkdevopscamp.uk"
+                HARBOR_URL     = credentials('harbor-url')
+                // HARBOR_URL     ="harbor.lx.gkdevopscamp.uk"
                 IMAGE_PUSH_DESTINATION="${HARBOR_URL}/vote/result"
                 GIT_COMMIT="${checkout (scm).GIT_COMMIT}"
                 IMAGE_TAG = "${BRANCH_NAME}-${GIT_COMMIT}"
@@ -96,8 +96,9 @@ spec:
                     withEnv(['PATH+EXTRA=/busybox']) {
                         sh '''#!/busybox/sh
                             cd result
-                            /kaniko/executor --context `pwd` --destination $IMAGE_PUSH_DESTINATION --insecure
+                            /kaniko/executor --context `pwd` --destination $BUILD_IMAGE --insecure
                         '''
+                        ///kaniko/executor --context `pwd` --destination $IMAGE_PUSH_DESTINATION --insecure
                     }
                 }
             }
