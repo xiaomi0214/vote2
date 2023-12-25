@@ -6,7 +6,7 @@ pipeline {
             when {
                 changeset "**/worker/**"
             }
-            // 这段 Demo4 才需要
+            // 这段 Demo4才需要
             agent {
                 kubernetes {
                     defaultContainer 'kaniko'
